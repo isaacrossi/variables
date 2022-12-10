@@ -22,6 +22,18 @@
 
   <style>
 
+    :root {
+      --spacing: 50px;
+      --blur: 1px;
+      --color: #ffc600;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--color);
+      filter: blur(var(--blur));
+    }
+
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -43,8 +55,32 @@
       width: 100px;
     }
   </style>
-
+    
   <script>
+    //grab the slider that deals with the padding on the image
+    const spacingSlider = document.getElementById('spacing');
+
+    //grab the slider that deals with the blur on the image
+    const blurSlider = document.getElementById('blur');
+
+    //grab the color picker input
+    const colorPicker = document.getElementById('base')
+
+    //when we move the slider, set the --spacing css variable to be the value of the #spacing slider
+    spacingSlider.addEventListener("change", function () {
+      const spacingValue = document.documentElement.style.setProperty('--spacing', `${spacingSlider.value}px`);
+    })
+
+    //when we move the slider, set the --blur css variable to be the value of the #blur slider
+    blurSlider.addEventListener("change", function () {
+      const blurValue = document.documentElement.style.setProperty('--blur', `${blurSlider.value}px`);
+    })
+
+    colorPicker.addEventListener("change", function () {
+      const baseColor = document.documentElement.style.setProperty('--color', `${colorPicker.value}`);
+    })
+
+
   </script>
 
 </body>
